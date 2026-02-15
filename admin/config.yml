@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "site_content"
+    label: "Site Content"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "_data/hero.json"
+        fields:
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+
+      - name: "about"
+        label: "About Section"
+        file: "_data/about.json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
+          - { label: "Image", name: "image", widget: "image" }
+
+      - name: "contact"
+        label: "Contact & Hours"
+        file: "_data/contact.json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Address Line 1", name: "address1", widget: "string" }
+          - { label: "Address Line 2", name: "address2", widget: "string" }
+          - { label: "Hours Line 1", name: "hours1", widget: "string" }
+          - { label: "Hours Line 2", name: "hours2", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Instagram URL", name: "instagram_url", widget: "string", required: false }
+
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "_data/events"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Day", name: "day", widget: "string", hint: "e.g. 20" }
+      - { label: "Month", name: "month", widget: "string", hint: "e.g. FEB" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Door Time", name: "time", widget: "string", hint: "e.g. Doors 8pm" }
+      - { label: "Sort Order", name: "order", widget: "number", default: 0, hint: "Lower numbers appear first" }
+
+  - name: "gallery"
+    label: "Gallery"
+    files:
+      - name: "gallery_images"
+        label: "Gallery Images"
+        file: "_data/gallery.json"
+        fields:
+          - label: "Images"
+            name: "images"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Alt Text", name: "alt", widget: "string" }
+              - { label: "Featured (large)", name: "featured", widget: "boolean", default: false }
