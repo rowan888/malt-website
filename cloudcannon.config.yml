@@ -1,22 +1,17 @@
-source: /
 paths:
-  output: /
   uploads: images
 collections_config:
   pages:
     path: ''
     output: true
-    url: '/[full_slug]'
+    url: '/[slug]/'
     icon: wysiwyg
     glob:
-      - '**/*.html'
+      - '*.html'
     disable_url: false
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
-    filter:
-      exclude:
-        - node_modules
 _editables:
   content:
     allow_custom_markup: false
