@@ -5,7 +5,8 @@ paths:
 collections_config:
   pages:
     path: ''
-    url: '/[slug]'
+    output: true
+    url: '/[full_slug]'
     icon: wysiwyg
     glob:
       - '**/*.html'
