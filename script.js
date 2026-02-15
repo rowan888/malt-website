@@ -98,6 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
       eventsGrid.innerHTML = '<p style="color: var(--warm-gray);">Events coming soon.</p>';
     });
 
+  // --- Load gallery from data file ---
+  const galleryGrid = document.getElementById('gallery-grid');
+
+  fetch('data/gallery.json')
+    .then(res => res.json())
+    .then(images => {
+      galleryGrid.innerHTML = images.map((item, i) => `
+        <div class="gallery-item${item.featured ? ' gallery-item--large' : ''} fade-in">
+          <img src="${item.image}" alt="${item.alt}" />
+        </div>
+      `).join('');
+
+      // Observe dynamically added items for fade-in
+      galleryGrid.querySelectorAll('.gallery-item').forEach(item => {
+        observer.observe(item);
+      });
+    })
+    .catch(() => {
+      galleryGrid.innerHTML = '<p style="color: var(--warm-gray);">Gallery coming soon.</p>';
+    });
+
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {

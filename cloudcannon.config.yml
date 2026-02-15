@@ -15,6 +15,8 @@ collections_config:
 data_config:
   events:
     path: data/events.json
+  gallery:
+    path: data/gallery.json
 _structures:
   event:
     style: modal
@@ -46,6 +48,18 @@ _inputs:
     type: text
     label: Door Time
     comment: e.g. Doors 8pm
+  image:
+    type: image
+    label: Image
+    comment: Upload or select a gallery photo
+  alt:
+    type: text
+    label: Alt Text
+    comment: Describe the image for accessibility
+  featured:
+    type: checkbox
+    label: Featured
+    comment: Featured images appear larger in the gallery
 _editables:
   content:
     allow_custom_markup: false
