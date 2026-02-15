@@ -72,8 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Load events from data file ---
   const eventsGrid = document.getElementById('events-grid');
 
-  fetch('data/events.json')
-    .then(res => res.json())
+  fetch('/data/events.json')
+    .then(res => {
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
     .then(events => {
       eventsGrid.innerHTML = events.map(event => `
         <article class="event-card fade-in">
@@ -89,20 +92,27 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>
       `).join('');
 
-      // Observe dynamically added cards for fade-in
       eventsGrid.querySelectorAll('.event-card').forEach(card => {
+        card.classList.add('fade-in');
         observer.observe(card);
       });
     })
     .catch(() => {
-      eventsGrid.innerHTML = '<p style="color: var(--warm-gray);">Events coming soon.</p>';
+      // Keep the static HTML fallback — just observe existing cards
+      eventsGrid.querySelectorAll('.event-card').forEach(card => {
+        card.classList.add('fade-in');
+        observer.observe(card);
+      });
     });
 
   // --- Load gallery from data file ---
   const galleryGrid = document.getElementById('gallery-grid');
 
-  fetch('data/gallery.json')
-    .then(res => res.json())
+  fetch('/data/gallery.json')
+    .then(res => {
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
     .then(images => {
       galleryGrid.innerHTML = images.map((item, i) => `
         <div class="gallery-item${item.featured ? ' gallery-item--large' : ''} fade-in">
@@ -110,13 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `).join('');
 
-      // Observe dynamically added items for fade-in
       galleryGrid.querySelectorAll('.gallery-item').forEach(item => {
         observer.observe(item);
       });
     })
     .catch(() => {
-      galleryGrid.innerHTML = '<p style="color: var(--warm-gray);">Gallery coming soon.</p>';
+      // Keep the static HTML fallback — just observe existing items
+      galleryGrid.querySelectorAll('.gallery-item').forEach(item => {
+        item.classList.add('fade-in');
+        observer.observe(item);
+      });
     });
 
   // --- Smooth scroll for anchor links ---
