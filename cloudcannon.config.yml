@@ -1,4 +1,6 @@
+source: /
 paths:
+  output: /
   uploads: images
 collections_config:
   pages:
