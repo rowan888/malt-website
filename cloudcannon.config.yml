@@ -12,6 +12,40 @@ collections_config:
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
+data_config:
+  events:
+    path: data/events.json
+_structures:
+  event:
+    style: modal
+    values:
+      - label: Event
+        icon: event
+        value:
+          day:
+          month:
+          title:
+          description:
+          time:
+_inputs:
+  day:
+    type: text
+    label: Day
+    comment: The day number of the event (e.g. 20)
+  month:
+    type: text
+    label: Month
+    comment: Three-letter month abbreviation (e.g. FEB)
+  title:
+    type: text
+    label: Event Title
+  description:
+    type: textarea
+    label: Description
+  time:
+    type: text
+    label: Door Time
+    comment: e.g. Doors 8pm
 _editables:
   content:
     allow_custom_markup: false

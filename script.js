@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Fade-in on scroll ---
   const fadeTargets = document.querySelectorAll(
-    '.section-label, .section-heading, .about-text, .about-image, .event-card, .gallery-item, .info-block, .socials, .find-map'
+    '.section-label, .section-heading, .about-text, .about-image, .gallery-item, .info-block, .socials, .find-map'
   );
 
   fadeTargets.forEach(el => el.classList.add('fade-in'));
@@ -68,6 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   fadeTargets.forEach(el => observer.observe(el));
+
+  // --- Load events from data file ---
+  const eventsGrid = document.getElementById('events-grid');
+
+  fetch('data/events.json')
+    .then(res => res.json())
+    .then(events => {
+      eventsGrid.innerHTML = events.map(event => `
+        <article class="event-card fade-in">
+          <div class="event-date">
+            <span class="event-day">${event.day}</span>
+            <span class="event-month">${event.month}</span>
+          </div>
+          <div class="event-info">
+            <h3>${event.title}</h3>
+            <p>${event.description}</p>
+            <span class="event-time">${event.time}</span>
+          </div>
+        </article>
+      `).join('');
+
+      // Observe dynamically added cards for fade-in
+      eventsGrid.querySelectorAll('.event-card').forEach(card => {
+        observer.observe(card);
+      });
+    })
+    .catch(() => {
+      eventsGrid.innerHTML = '<p style="color: var(--warm-gray);">Events coming soon.</p>';
+    });
 
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
