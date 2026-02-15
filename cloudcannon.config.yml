@@ -1,27 +1,30 @@
-# CloudCannon configuration for MALT. website
-
-# Global editable regions configuration
-_editables:
-  content:
-    bold: true
-    italic: true
-    link: true
-    bulletedlist: true
-    numberedlist: true
-    horizontalrule: true
-    blockquote: true
-    removeformat: true
-  text:
-    bold: true
-    italic: true
-    link: true
-
-# Paths
 paths:
   uploads: images
-
-# Collections
-collections_config: {}
-
-# Editor configuration
-_inputs: {}
+collections_config:
+  pages:
+    path: ''
+    icon: wysiwyg
+    disable_url: false
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+_editables:
+  content:
+    allow_custom_markup: false
+    remove_custom_markup: false
+    blockquote: true
+    bold: true
+    bulletedlist: true
+    horizontalrule: true
+    image_size_attributes: true
+    italic: true
+    link: true
+    numberedlist: true
+    removeformat: true
+  text:
+    allow_custom_markup: true
+    remove_custom_markup: false
+    bold: true
+    italic: true
+    link: true
+timezone: Etc/UTC
