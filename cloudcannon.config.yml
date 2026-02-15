@@ -5,11 +5,17 @@ paths:
 collections_config:
   pages:
     path: ''
+    url: '/[slug]'
     icon: wysiwyg
+    glob:
+      - '**/*.html'
     disable_url: false
     disable_add: false
     disable_add_folder: false
     disable_file_actions: false
+    filter:
+      exclude:
+        - node_modules
 _editables:
   content:
     allow_custom_markup: false
